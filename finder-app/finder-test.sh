@@ -54,9 +54,9 @@ fi
 
 for i in $( seq 1 $NUMFILES)
 do
-	qemu-aarch64 -L /opt/gcc-arm-aarch64/aarch64-none-linux-gnu/libc ./writer "$WRITEDIR/${username}$i.txt" "$WRITESTR"
+	./writer "$WRITEDIR/${username}$i.txt" "$WRITESTR"
 done
-
+# qemu-aarch64 -L /opt/gcc-arm-aarch64/aarch64-none-linux-gnu/libc
 OUTPUTSTRING=$(./finder.sh "$WRITEDIR" "$WRITESTR")
 
 # remove temporary directories
