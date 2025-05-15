@@ -55,7 +55,11 @@ mkdir -p rootfs/{bin,sbin,lib,lib64,usr/{bin,sbin},etc,proc,sys,dev,tmp,home}
 # -------- BusyBox --------
 if [ ! -d "busybox" ]; then
     echo "Cloning BusyBox..."
-    git clone git://busybox.net/busybox.git
+    for i in 1 2 3; do
+        git clone git://busybox.net/busybox.git && break
+        echo "BusyBox clone attempt $i failed. Retrying..."
+        sleep 5
+    done
     cd busybox
     git checkout ${BUSYBOX_VERSION}
     make distclean
